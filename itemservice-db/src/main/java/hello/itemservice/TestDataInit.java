@@ -15,6 +15,8 @@ public class TestDataInit {
 
     /**
      * 확인용 초기 데이터 추가
+     * 컨테이너가 초기화를 끝내고 실행 준비가 되었을 때 발생하는 이벤트.
+     * AOP같은 initData를 호출해준다.
      */
     @EventListener(ApplicationReadyEvent.class)
     public void initData() {

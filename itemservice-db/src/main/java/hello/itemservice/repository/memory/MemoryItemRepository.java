@@ -10,6 +10,8 @@ import org.springframework.util.ObjectUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// 메모리 저장소
+// 자바 재실행 시 데이터 모두 사라짐
 @Repository
 public class MemoryItemRepository implements ItemRepository {
 
@@ -28,11 +30,11 @@ public class MemoryItemRepository implements ItemRepository {
         Item findItem = findById(itemId).orElseThrow();
         findItem.setItemName(updateParam.getItemName());
         findItem.setPrice(updateParam.getPrice());
-        findItem.setQuantity(updateParam.getQuantity());
+        findItem.setQuantity(updateParam.getQuantity()); // 객체를 참조했기 때문에 따로 save 필요하지 않음!
     }
 
     @Override
-    public Optional<Item> findById(Long id) {
+    public Optional<Item> findById(Long id) { // null일 수도 있기 때문에 Optional
         return Optional.ofNullable(store.get(id));
     }
 
@@ -45,12 +47,12 @@ public class MemoryItemRepository implements ItemRepository {
                     if (ObjectUtils.isEmpty(itemName)) {
                         return true;
                     }
-                    return item.getItemName().contains(itemName);
+                    return item.getItemName().contains(itemName); // 이름검색
                 }).filter(item -> {
                     if (maxPrice == null) {
                         return true;
                     }
-                    return item.getPrice() <= maxPrice;
+                    return item.getPrice() <= maxPrice; // 최대값 검색
                 })
                 .collect(Collectors.toList());
     }

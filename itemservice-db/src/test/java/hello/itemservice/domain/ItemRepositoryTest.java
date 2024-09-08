@@ -58,6 +58,7 @@ class ItemRepositoryTest {
         assertThat(findItem.getQuantity()).isEqualTo(updateParam.getQuantity());
     }
 
+    // 조건부 검색
     @Test
     void findItems() {
         //given
@@ -71,7 +72,7 @@ class ItemRepositoryTest {
 
         //둘 다 없음 검증
         test(null, null, item1, item2, item3);
-        test("", null, item1, item2, item3);
+        test("", null, item1, item2, item3); // isEmpty는 길이 검사하기 때문에 ""하면 true 반환
 
         //itemName 검증
         test("itemA", null, item1, item2);

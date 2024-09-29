@@ -52,7 +52,7 @@ class ItemRepositoryTest {
         */
     }
 
-    @Commit
+//    @Commit
     //@Rollback(false) // @Commit 과 동일
     @Test
     void save() {
@@ -86,7 +86,7 @@ class ItemRepositoryTest {
     }
 
     // 조건부 검색
-    @Commit
+//    @Commit
     @Test
     void findItems() {
         //given

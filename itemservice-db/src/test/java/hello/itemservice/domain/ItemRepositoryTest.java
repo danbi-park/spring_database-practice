@@ -4,6 +4,7 @@ import hello.itemservice.repository.ItemRepository;
 import hello.itemservice.repository.ItemSearchCond;
 import hello.itemservice.repository.ItemUpdateDto;
 import hello.itemservice.repository.memory.MemoryItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 @Transactional // 매 테스트 마다 롤백
 @SpringBootTest
 class ItemRepositoryTest {
@@ -93,6 +95,13 @@ class ItemRepositoryTest {
         Item item1 = new Item("itemA-1", 10000, 10);
         Item item2 = new Item("itemA-2", 20000, 20);
         Item item3 = new Item("itemB-1", 30000, 30);
+
+        // `@Repository` 애노테이션만 있으면 스프링이 예외 변환을 처리하는 AOP를 만들어준다.
+        // repository=class hello.itemservice.repository.jpa.JpaItemRepository$$EnhancerBySpringCGLIB$$8bed95ed
+        // 없으면? (근데 @Transactional도 없애야하긴 함)
+        // repository=class hello.itemservice.repository.jpa.JpaItemRepository
+
+        log.info("repository={}", itemRepository.getClass());
 
         itemRepository.save(item1);
         itemRepository.save(item2);

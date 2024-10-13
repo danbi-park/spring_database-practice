@@ -8,6 +8,9 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+// hibernate 버그 발생하여 다음과 같이 버전 낮춤
+ext["hibernate.version"] = "5.6.5.Final"
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -30,7 +33,7 @@ dependencies {
 	// MyBatis
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 
-	//JPA, 스프링 데이터 JPA 추가
+	//JPA, 스프링 데이터 JPA, JDBC 등등 다 포함되어 있음
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 

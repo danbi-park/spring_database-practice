@@ -19,7 +19,8 @@ import java.sql.DriverManager;
 //@Import(JdbcTemplateV2Config.class)
 //@Import(JdbcTemplateV3Config.class)
 //@Import(MyBatisConfig.class)
-@Import(JpaConfig.class)
+//@Import(JpaConfig.class)
+@Import(SpringDataJpaConfig.class)
 @SpringBootApplication(scanBasePackages = "hello.itemservice.web") // 지정을 안하면 현재 위치 기준 하위에 있는 전부 컴포넌트 스캔 대상이 됨, 여기서는 컨트롤러만 스캔 대상으로 설정 나머지는 수동으로
 public class ItemServiceApplication {
 
